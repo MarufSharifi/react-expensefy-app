@@ -10,13 +10,11 @@ import { addExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
 
 
-
-
 const store = configureStore();
 
 
 const jsx = (
-  <Provider store={store}>
+  <Provider store={store}> 
     <AppRouter />
   </Provider>
   
