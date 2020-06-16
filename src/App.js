@@ -1,13 +1,15 @@
 
 import React from 'react';
-import {Provider} from 'react-redux'
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import logo from './logo.svg';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import getVisibleExpenses from './selectors/expenses';
 import './Styles/Styles.scss';
-import { addExpense } from './actions/expenses';
+import { startSetExpenses, startAddExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
+import './firebase/firebase';
 
 
 const store = configureStore();
@@ -17,13 +19,20 @@ const jsx = (
   <Provider store={store}> 
     <AppRouter />
   </Provider>
-  
 );
-function App() {
 
-  return (
-   jsx
-  );
-}
+ReactDOM.render(<p>Lodding....</p>, document.getElementById('root'));
 
-export default App;
+store.dispatch(startSetExpenses());
+
+
+ReactDOM.render(jsx, document.getElementById('root'));
+
+// function App() {
+
+//   return (
+//    jsx
+//   );
+// }
+
+// export default App;
