@@ -1,6 +1,5 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import logo from './logo.svg';
 import AppRouter from './routers/AppRouter';
@@ -14,25 +13,20 @@ import './firebase/firebase';
 
 const store = configureStore();
 
-
 const jsx = (
   <Provider store={store}> 
     <AppRouter />
   </Provider>
 );
 
-ReactDOM.render(<p>Lodding....</p>, document.getElementById('root'));
 
 store.dispatch(startSetExpenses());
 
+function App() {
 
-ReactDOM.render(jsx, document.getElementById('root'));
+  return (
+   jsx
+  );
+}
 
-// function App() {
-
-//   return (
-//    jsx
-//   );
-// }
-
-// export default App;
+export default App;
