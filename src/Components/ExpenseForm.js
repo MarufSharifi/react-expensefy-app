@@ -57,7 +57,7 @@ export default class ExpenseForm extends React.Component {
             e.preventDefault();
 
             if(!this.state.description || !this.state.amount){
-                    this.setState(() => ({ error: 'please complete the form first'}));
+                    this.setState(() => ({ error: 'please provide description and amount.'}));
                    
             }else {
                     this.setState(() => ({ error: ''}));
@@ -72,12 +72,15 @@ export default class ExpenseForm extends React.Component {
 
     render(){
         return(
-            <div>
-                {this.state.error && <p>{this.state.error}</p>}
+               <form
+               className="form"
+                onSubmit={this.onSubmit}>
 
-               <form onSubmit={this.onSubmit}>
+               {this.state.error && <p className="from__error">{this.state.error}</p>}
+
 
                    <input type="text"
+                   className="text-input"
                    placeholder="Description"
                    autoFocus
                    value={this.state.description}
@@ -85,6 +88,7 @@ export default class ExpenseForm extends React.Component {
                   />
 
                     <input type='text'
+                    className="text-input"
                     placeholder="amount"
                     value={this.state.amount}
                     onChange={this.onAmountChange}/>
@@ -99,14 +103,15 @@ export default class ExpenseForm extends React.Component {
                     />
 
                     <textarea  
+                    className="textarea"
                     value={this.state.note}
                     onChange={this.onNoteChange}
                     placeholder="Add a note for your expense (optional)">
                     </textarea >
-                    
-                    <button>Add Expense</button>
+                    <div>
+                    <button className="button">Save Expense</button>
+                    </div>
                </form>
-            </div>
         )
     } 
 }

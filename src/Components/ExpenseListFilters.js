@@ -22,29 +22,42 @@ class ExpensetListFilters extends React.Component {
     render () {
 
         return (
-            <div>
+            <div className="content-container">
 
-                <input type="text" value={this.props.filters.text} onChange={(e) => {
+                <div className="input-group">
+                    <div className="input-group__item">
+                <input type="text" 
+                className="text-input"
+                value={this.props.filters.text} 
+                placeholder="Search expenses"
+                onChange={(e) => {
                         this.props.dispatch(setTextFilter(e.target.value));
                 }}/>
         
+                </div>
+              
+                <div className="input-group__item">
                 <select value={this.props.filters.sortBy} 
 
-                onChange={(e) =>{
-                    if(e.target.value === "date"){
-                        this.props.dispatch(sortByDate());
-                    }else{
-                        this.props.dispatch(sortByAmount());
-                    }
+                        className="select"
+                    onChange={(e) =>{
+                        if(e.target.value === "date"){
+                            this.props.dispatch(sortByDate());
+                        }else{
+                            this.props.dispatch(sortByAmount());
+                        }
 
-                }}>
+                    }}>
 
-                    <option value="date">Date</option>
+                        <option value="date">Date</option>
 
-                    <option value="amount">Amount</option>
+                        <option value="amount">Amount</option>
 
-                </select>
-
+                    </select>
+                </div>
+                
+                <div className="input-group__item">
+                    
                 <DateRangePicker 
                 startDate={this.props.filters.startDate}
                 endDate={this.props.filters.endDate}
@@ -55,6 +68,10 @@ class ExpensetListFilters extends React.Component {
                 isOutsideRange={() => false}
                 showClearDates={true}
                 />
+                </div>
+
+                </div>
+                
             </div>
         );
     }
